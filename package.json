@@ -1,0 +1,17 @@
+{
+  "name": "shuddh-desi-bites-whatsapp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "WhatsApp ordering bot for Shuddh Desi Bites on Meta's WhatsApp Cloud API",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.137.0",
+    "@vercel/functions": "^3.10.1"
+  }
+}
