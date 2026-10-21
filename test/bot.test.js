@@ -114,3 +114,14 @@ test('without Claude configured, free text gets the welcome', async () => {
   await handleMessage(text('do you deliver to HSR?'), d);
   assert.equal(d.wa.last().buttons[0].id, 'menu');
 });
+
+test('the conversation sent to Claude always starts with the customer', async () => {
+  const seen = [];
+  const d = deps({ ai: { answer: async (menu, history) => (seen.push(history), 'Sure.') } });
+  for (let i = 0; i < 5; i++) await handleMessage(text(`question ${i}`), d);
+  for (const history of seen) {
+    assert.equal(history[0].role, 'user');
+    assert.ok(history.length <= 6);
+  }
+  assert.equal(seen[4].at(-1).content, 'question 4');
+});
